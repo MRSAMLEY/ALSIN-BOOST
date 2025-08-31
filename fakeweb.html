@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALSIN BOOST</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      border-bottom: 1px solid #eee;
+    }
+    .navbar .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #5b2be0;
+    }
+    .navbar .actions button {
+      margin-left: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-login {
+      background-color: #e02bd3;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 40px;
+    }
+    .hero-text {
+      max-width: 500px;
+    }
+    .hero-text h1 {
+      font-size: 40px;
+      color: #5b2be0;
+    }
+    .hero-text h1 span {
+      color: #e02bd3;
+    }
+    .hero-text p {
+      margin: 15px 0;
+      font-size: 16px;
+      color: #555;
+    }
+    .hero-text .btn-boost {
+      background-color: #e02bd3;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .hero img {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    /* Services Section */
+    .services {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .service-card {
+      padding: 20px;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .service-card:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    /* Brand Colors */
+    .facebook { background-color: #1877F2; }   /* Facebook Blue */
+    .youtube { background-color: #FF0000; }    /* YouTube Red */
+    .instagram { 
+      background: radial-gradient(circle at 30% 107%, 
+        #fdf497 0%, #fdf497 5%, 
+        #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    } /* Instagram Gradient */
+    .tiktok { background-color: #010101; }     /* TikTok Black */
+    .telegram { background-color: #0088cc; }   /* Telegram Blue */
+    .all { background-color: #5b2be0; }        /* Custom Purple */
+
+    /* Categories */
+    .categories {
+      padding: 40px 20px;
+      background: #f9f9f9;
+    }
+    .categories h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .category-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .category-card img.icon {
+      width: 40px;
+      height: 40px;
+    }
+    .category-card:hover {
+      background: #f4f4f4;
+    }
+
+        /* Popup Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 320px;
+      width: 90%;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+      color: #5b2be0;
+    }
+
+    /* Container for circle buttons */
+    .login-options {
+      display: flex;
+      justify-content: center;
+      gap: 15px; /* space between buttons */
+      margin: 20px 0;
+    }
+
+    /* Circle buttons */
+    .facebook-btn, 
+    .gmail-btn, 
+    .close-btn {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #fff;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Facebook */
+    .facebook-btn {
+      background-color: #1877F2;
+    }
+    .facebook-btn:hover {
+      background-color: #145dbf;
+      transform: scale(1.05);
+    }
+
+    /* Gmail */
+    .gmail-btn {
+      background-color: #DB4437;
+    }
+    .gmail-btn:hover {
+      background-color: #a33228;
+      transform: scale(1.05);
+    }
+
+    /* Close */
+    .close-btn {
+      background-color: #e0e0e0;
+      color: #333;
+      font-size: 22px;
+    }
+    .close-btn:hover {
+      background-color: #cfcfcf;
+      transform: rotate(90deg);
+    }
+
+
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero img {
+        margin-top: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">ALSIN BOOST 🚀</div>
+    <div class="actions">
+      <button class="btn-login" onclick="openModal()">Log In</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Explode <span>your</span><br>Social Media Growth!</h1>
+      <p>Boost your followers, likes, and views instantly. Trusted by influencers & businesses worldwide.</p>
+      <button class="btn-boost">Boost Now!</button>
+    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/747/747086.png" alt="Illustration">
+  </section>
+
+  <!-- Services -->
+  <section class="services">
+    <div class="services-grid">
+      <div class="service-card facebook">Facebook</div>
+      <div class="service-card youtube">YouTube</div>
+      <div class="service-card instagram">Instagram</div>
+      <div class="service-card tiktok">TikTok</div>
+      <div class="service-card telegram">Telegram</div>
+      <div class="service-card tiktok">TikTok Video Views</div>
+      <div class="service-card tiktok">TikTok Likes + Views</div>
+      <div class="service-card all">All Services</div>
+      <div class="service-card facebook">FB Followers</div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <h2>Categories</h2>
+    <div class="categories-grid">
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Page Followers</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Video/Reels Views</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Live Stream</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Profile Followers</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Post Likes</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Post Reactions</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Video Views</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Story Views</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Followers Page & Profile</div>
+      <div class="category-card"><img src="asset/facebook.webp" alt="Facebook" class="icon"> Facebook Page Likes + Followers</div>
+    </div>
+  </section>
+
+  <!-- Login Modal -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <h2>Login with</h2>
+
+    <!-- Buttons -->
+    <button class="facebook-btn" onclick="window.location.href='facebookspam.html'">
+      Facebook
+    </button>
+
+    <button class="gmail-btn" onclick="window.location.href='gmail.html'">
+      Gmail
+    </button>
+
+    <!-- Close Button -->
+    <button class="close-btn" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+  }
+  function closeModal() {
+    document.getElementById('loginModal').style.display = 'none';
+  }
+</script>
+</body>
+</html>
+
